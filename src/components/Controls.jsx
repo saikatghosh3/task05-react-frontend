@@ -59,7 +59,7 @@ const Controls = ({
               <Form.Control
                 type="range"
                 min="0"
-                max="5000"
+                max="10"
                 value={errors}
                 onChange={(e) => onErrorsChange(e.target.value)}
               />

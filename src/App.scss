@@ -1,0 +1,133 @@
+// theme.scss
+
+// Import Bootstrap's core variables
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Custom color palette (based on Material UI theme)
+$primary: #234a97;
+$secondary: #b1478f;
+$success: #20a05f;
+$info: #f05251;
+$warning: #e1ca21;
+$danger: #ee1e10;
+$light: #ffe9eb;
+$dark: #1f1d35;
+$neutral: (
+  50: #fbfcfe,
+  100: #f0f4f8,
+  200: #dde7ee,
+  300: #cdd7e1,
+  400: #9fa6ad,
+  500: #636b74,
+  600: #555e68,
+  700: #32383e,
+  800: #202427,
+  900: #121517,
+  950: #090a0b,
+);
+
+// Typography
+$font-family-base: Inter, -apple-system, "Segoe UI", Helvetica, Arial,
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+$font-size-base: 1rem;
+$font-size-h1: 3.5rem;
+$font-size-h2: 3rem;
+$font-size-h3: 2.25rem;
+$font-size-h4: 2rem;
+$font-size-h5: 1.5rem;
+$font-size-h6: 1.125rem;
+$font-weight-bold: 500;
+$line-height-base: 1.5;
+
+// Shadows
+$shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.08);
+$shadow-md: 0px 1px 5px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0px 3px 16px rgba(0, 0, 0, 0.08);
+
+// Breakpoints (Bootstrap already supports similar breakpoints)
+$grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+  xl: 1440px,
+);
+
+// Override default Bootstrap theme colors with your custom colors
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+
+// Custom background levels (Material UI background equivalents)
+$body-bg: map-get($neutral, 50);
+$card-bg: map-get($neutral, 100);
+$navbar-bg: map-get($neutral, 200);
+
+// Extend Bootstrap spacers to include 280px
+$custom-spacers: (
+  "280": 280px
+    // Add custom 280px value,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+);
+
+// Merge custom spacers with the existing Bootstrap spacers
+$spacers: map-merge($spacers, $custom-spacers);
+
+$input-placeholder-color: map-get($neutral, 400);
+// Typography overline style
+.overline {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+// Custom shadows class utilities
+.shadow-md {
+  box-shadow: $shadow-md;
+}
+
+.shadow-lg {
+  box-shadow: $shadow-lg;
+}
+
+.mw-280 {
+  max-width: 280px !important;
+  width: 100% !important;
+}
+
+.large-checkbox .form-check-input {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.table > thead {
+  background-color: rgba(var(--bs-emphasis-color-rgb), 0.075);
+}
+.table > thead > tr > th {
+  background-color: inherit !important;
+}
+
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+// More component-level customizations
+@import "~bootstrap/scss/bootstrap";

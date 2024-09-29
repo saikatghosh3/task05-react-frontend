@@ -81,7 +81,7 @@ const App = () => {
 
   return (
     <Container className="app">
-      <h1 className="text-center my-4">Random User Generator</h1>
+      <h1 className="text-center my-4">Random User Data Generator</h1>
       <Row className="mb-4">
         <Col>
           <Controls

@@ -6,14 +6,14 @@
 @import "~bootstrap/scss/mixins";
 
 // Custom color palette (based on Material UI theme)
-$primary: #234a97;
-$secondary: #b1478f;
-$success: #20a05f;
-$info: #f05251;
-$warning: #e1ca21;
-$danger: #ee1e10;
-$light: #ffe9eb;
-$dark: #1f1d35;
+$primary: #635bff;
+$secondary: #636b74;
+$success: #15b79f;
+$info: #04aad6;
+$warning: #fb9c0c;
+$danger: #f04438;
+$light: #f9fafb;
+$dark: #090a0b;
 $neutral: (
   50: #fbfcfe,
   100: #f0f4f8,
@@ -113,7 +113,12 @@ $input-placeholder-color: map-get($neutral, 400);
   background-color: rgba(var(--bs-emphasis-color-rgb), 0.075);
 }
 .table > thead > tr > th {
-  background-color: inherit !important;
+  background-color: rgb(222, 226, 230) !important;
+  position: sticky;
+  top: -1px;
+  left:0;
+  padding-block: 16px;
+  
 }
 
 .app {
@@ -123,6 +128,29 @@ $input-placeholder-color: map-get($neutral, 400);
 
 .table-container {
   margin-top: 20px;
+  height: min(430px, 80vh) !important;
+  overflow-y: auto;
+}
+.table-responsive {
+  position: relative;
+  overflow: unset !important;
+  top:0;
+}
+.table-wrapper {
+  position: relative;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 10;
 }
 
 .controls {

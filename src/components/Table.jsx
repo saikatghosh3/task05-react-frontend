@@ -1,8 +1,8 @@
 import { useRef, useCallback } from "react";
-import { Table as BootstrapTable } from "react-bootstrap";
+import { Table as BootstrapTable, Spinner } from "react-bootstrap";
 import { useDebouncedCallback } from "use-debounce";
 
-const Table = ({ users, onLoadMore }) => {
+const Table = ({ users, onLoadMore, isLoading: loading }) => {
   const observer = useRef();
 
   const loadMore = useDebouncedCallback(() => {
@@ -14,46 +14,51 @@ const Table = ({ users, onLoadMore }) => {
       if (observer.current) observer.current.disconnect();
 
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && !loading) { // Trigger loadMore only if not loading
           loadMore();
         }
       });
 
       if (node) observer.current.observe(node);
     },
-    [loadMore]
+    [loadMore, loading]
   );
 
   return (
-    <div
-      className="table-container"
-      style={{ maxHeight: "min(420px, 80vh)", overflowY: "auto" }}
-    >
-      <BootstrapTable striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>Index</th>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr
-              key={user.id}
-              ref={users.length === index + 1 ? lastUserElementRef : null}
-            >
-              <td>{index + 1}</td>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.address}</td>
-              <td>{user.phone}</td>
+    <div className="table-wrapper">
+      <div className="table-container">
+        <BootstrapTable striped bordered hover responsive>
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone</th>
             </tr>
-          ))}
-        </tbody>
-      </BootstrapTable>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr
+                key={index}
+                ref={users.length === index + 1 ? lastUserElementRef : null}
+              >
+                <td>{index + 1}</td>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.address}</td>
+                <td>{user.phone}</td>
+              </tr>
+            ))}
+          </tbody>
+        </BootstrapTable>
+      </div>
+      {/* Overlay spinner when loading */}
+      {loading && (
+        <div className="loading-overlay">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
     </div>
   );
 };
